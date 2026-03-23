@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg: #f6f4f1;
-      --surface: rgba(255, 255, 255, 0.84);
+      --surface: rgba(255, 255, 255, 0.88);
       --surface-strong: #ffffff;
       --text: #1d1b19;
       --muted: #6d655e;
@@ -24,6 +24,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -34,8 +35,15 @@
       line-height: 1.75;
     }
 
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     a:focus-visible,
     button:focus-visible,
@@ -56,7 +64,10 @@
       border: 2px solid #000;
       z-index: 1000;
     }
-    .skip-link:focus { top: 12px; }
+
+    .skip-link:focus {
+      top: 12px;
+    }
 
     .wrap {
       width: min(calc(100% - 32px), var(--max));
@@ -70,11 +81,11 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(250,247,243,0.88));
-      border: 1px solid rgba(229,221,212,0.95);
+      background: linear-gradient(135deg, rgba(255,255,255,0.84), rgba(250,247,243,0.9));
+      border: 1px solid rgba(229, 221, 212, 0.95);
       border-radius: 34px;
       box-shadow: var(--shadow);
-      padding: 40px 32px 30px;
+      padding: 48px 32px;
       backdrop-filter: blur(12px);
     }
 
@@ -104,6 +115,7 @@
       font-size: clamp(2.1rem, 4vw, 3.5rem);
       line-height: 1.2;
       letter-spacing: -0.03em;
+      word-break: keep-all;
     }
 
     .lead {
@@ -113,17 +125,25 @@
       font-size: 1.07rem;
     }
 
-    .hero-actions, .controls {
+    .hero-actions,
+    .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
       align-items: center;
     }
 
-    .hero-actions { margin-top: 24px; }
-    .controls { margin-top: 20px; }
+    .hero-actions {
+      margin-top: 24px;
+      gap: 14px;
+    }
 
-    .btn, .control-btn {
+    .controls {
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .btn,
+    .control-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -131,7 +151,7 @@
       padding: 11px 18px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.94);
       color: var(--text);
       font: inherit;
       font-weight: 700;
@@ -171,6 +191,7 @@
       font-size: 1.45rem;
       line-height: 1.3;
       letter-spacing: -0.02em;
+      word-break: keep-all;
     }
 
     .section-intro {
@@ -186,7 +207,7 @@
     }
 
     .mini-card {
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.9);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 18px;
@@ -205,7 +226,7 @@
 
     .author-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 20px;
       align-items: start;
     }
@@ -216,7 +237,7 @@
     }
 
     .author-panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(246,241,235,0.9));
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(246,241,235,0.92));
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 18px;
@@ -270,12 +291,13 @@
 
     .art-image {
       width: 100%;
-      max-width: 540px;
-      max-height: 720px;
+      max-width: 520px;
+      height: auto;
       object-fit: contain;
       border-radius: 22px;
       box-shadow: 0 16px 34px rgba(23, 17, 12, 0.14);
       background: #fff;
+      margin: 0 auto;
     }
 
     .art-content {
@@ -298,6 +320,7 @@
       font-size: clamp(1.5rem, 3vw, 2rem);
       line-height: 1.28;
       letter-spacing: -0.02em;
+      word-break: keep-all;
     }
 
     .meta {
@@ -350,7 +373,7 @@
     }
 
     .footer-box {
-      background: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.75);
       border: 1px solid var(--line);
       border-radius: 24px;
       box-shadow: var(--shadow);
@@ -378,8 +401,7 @@
       }
 
       .art-image {
-        max-width: 640px;
-        max-height: none;
+        max-width: 620px;
       }
     }
 
@@ -388,18 +410,19 @@
         width: min(calc(100% - 20px), var(--max));
       }
 
-      .hero,
-      .section-card,
-      .art-content,
-      .art-visual {
-        padding-left: 18px;
-        padding-right: 18px;
+      .hero {
+        padding: 32px 18px 26px;
+        border-radius: 26px;
       }
 
-      .hero {
-        padding-top: 28px;
-        padding-bottom: 24px;
-        border-radius: 26px;
+      .section-card {
+        padding: 22px 18px;
+      }
+
+      .art-visual,
+      .art-content {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
       .section-card,
@@ -450,6 +473,7 @@
           <p class="section-intro">
             작품을 글과 음성으로 천천히 따라갈 수 있도록 구조를 단순하게 정리했습니다. 처음 방문하는 분도 편안하게 탐색할 수 있도록 정보 흐름을 명확하게 구성했습니다.
           </p>
+
           <div class="intro-grid">
             <article class="mini-card">
               <h3>이 사이트의 방식</h3>
@@ -472,7 +496,7 @@
           <div class="author-grid">
             <div class="author-main">
               <h2 class="section-title" id="author-title">작가 소개</h2>
-              <p>시와 회화를 함께 작업하는 작가. 상실, 위로, 연결, 자연의 순환을 주제로 작업합니다.</p>
+              <p>시와 회화를 함께 작업하는 작가로, 상실과 위로, 연결과 자연의 순환을 주요한 감각으로 삼아 작업합니다. 언어와 이미지가 서로를 비추는 방식에 관심을 두고, 시와 회화를 통해 마음의 결을 천천히 건네는 작업을 이어가고 있습니다.</p>
               <p><strong>대표 저서</strong><br>
                 시집 『문득』, 시집 『팔레트』, 시집 『손잡고 이탈』, 시화집 『나의 아침은 그의 푸른 나라』, 시화집 『기억』, 산문집 『소류지에 머무는 밤』
               </p>
@@ -521,7 +545,7 @@
         <div class="gallery-stack">
           <div class="section-card">
             <h2 class="section-title" id="gallery-title">작품</h2>
-            <p class="section-intro">작품 한 점을 천천히 읽고 바라볼 수 있도록 이미지와 설명을 한 화면 안에 담았습니다.</p>
+            <p class="section-intro">작품 이미지는 과도하게 커지지 않도록 정리하고, 작품 설명은 천천히 읽어갈 수 있도록 카드 형식으로 배치했습니다.</p>
           </div>
 
           <article class="art-card" aria-labelledby="art1-title">
@@ -553,4 +577,146 @@
                   <div class="desc-block">
                     <h4>자세한 묘사</h4>
                     <p>
-                      이 작품은 가로로 긴 화면이며, 왼쪽과 오른쪽이 서로 다른 시간과 분위기로 나뉘어 있습니다. 왼쪽에는 따뜻한 베이지색과 연한 갈색 배경 위로, 매우 큰 초록색 나무가 화면 대부분을 차지하고 있습니다. 나무는 아래가 굵고 위로 갈수록 둥글게 퍼지며, 머리카락처럼 가느다란 선들이 아래로 흘러내리는 형태입니다. 나무 주변에는 작은 흰 점들이 흩어져 있어 눈이나 빛의 입자처럼 보입니다.
+                      이 작품은 가로로 긴 화면이며, 왼쪽과 오른쪽이 서로 다른 시간과 분위기로 나뉘어 있습니다. 왼쪽에는 따뜻한 베이지색과 연한 갈색 배경 위로, 매우 큰 초록색 나무가 화면 대부분을 차지하고 있습니다. 나무는 아래가 굵고 위로 갈수록 둥글게 퍼지며, 머리카락처럼 가느다란 선들이 아래로 흘러내리는 형태입니다. 나무 주변에는 작은 흰 점들이 흩어져 있어 눈이나 빛의 입자처럼 보입니다. 화면 중앙을 지나 오른쪽으로 가면 배경이 분홍색으로 바뀌고, 더 오른쪽 끝은 깊은 파란색 밤하늘로 이어집니다. 오른쪽 아래에는 여러 명의 사람들이 손을 잡고 원을 이루며 춤을 추고 있습니다. 인물들은 길고 흐르는 듯한 분홍빛 옷을 입고 있으며 서로 연결되어 있습니다. 오른쪽 위에는 둥근 빛이 있어 달처럼 보입니다. 전체적으로 이 그림은 낮과 밤, 감정과 시간, 그리고 공동체의 연결을 함께 보여줍니다.
+                    </p>
+                  </div>
+
+                  <div class="desc-block">
+                    <h4>작가 노트</h4>
+                    <p>
+                      이 작품은 강강술래의 원형 움직임을 통해 ‘함께 있음’과 ‘이어짐’을 이야기합니다. 서로 다른 시간과 감정이 하나의 흐름으로 이어지는 순간을 표현했습니다.
+                    </p>
+                  </div>
+
+                  <div class="desc-block">
+                    <h4>오디오 설명</h4>
+                    <div class="audio-actions">
+                      <button type="button" class="control-btn tts-play" data-target="tts-art1">설명 듣기</button>
+                      <button type="button" class="control-btn tts-stop">음성 정지</button>
+                    </div>
+                    <p id="tts-art1" class="meta" style="margin-top:12px; color:var(--text);">
+                      이 그림은 가로로 긴 화면입니다. 왼쪽에는 매우 큰 초록색 나무가 있고, 아래가 굵고 위로 둥글게 퍼져 있습니다. 나무는 머리카락처럼 가는 선들이 아래로 흘러내리는 형태입니다. 배경은 왼쪽은 따뜻한 베이지색, 가운데는 분홍색, 오른쪽은 짙은 파란색으로 나뉘어 있습니다. 화면 전체에는 작은 흰 점들이 흩어져 있어 눈이나 빛처럼 보입니다. 오른쪽 아래에는 여러 사람이 손을 잡고 원을 이루며 춤을 추고 있습니다. 인물들은 분홍빛 옷을 입고 있으며 서로 연결되어 있습니다. 오른쪽 위에는 둥근 빛이 있어 달처럼 보입니다. 전체적으로 이 그림은 함께 움직이고 연결되는 감각을 보여줍니다.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-box">
+        <p><strong>현재 상태:</strong> 작가 소개, 전시 이력, 수상 및 표창, 작품 설명, 음성 읽기 기능이 반영된 기본 완성본입니다.</p>
+        <p><strong>이미지 표시 조건:</strong> 저장소 안에 <strong>goodgeori.jpg</strong>가 같은 위치에 있으면 정상적으로 표시됩니다.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      let fontScale = 100;
+      let highContrast = false;
+      const status = document.getElementById("view-status");
+
+      function applyView() {
+        root.style.fontSize = fontScale + "%";
+
+        const cards = document.querySelectorAll(
+          ".hero, .section-card, .art-card, .footer-box, .mini-card, .author-panel, .control-btn, .btn"
+        );
+        const muted = document.querySelectorAll(
+          ".lead, .meta, .status, .section-intro, .mini-card p, .author-main p, .author-panel ul, .desc-block p"
+        );
+
+        if (highContrast) {
+          document.body.style.background = "#111";
+          document.body.style.color = "#fff";
+
+          cards.forEach(el => {
+            el.style.background = "#1c1c1c";
+            el.style.color = "#fff";
+            el.style.borderColor = "#666";
+            el.style.boxShadow = "none";
+          });
+
+          muted.forEach(el => {
+            el.style.color = "#e7e7e7";
+          });
+
+          status.textContent = "고대비 보기 모드가 켜져 있습니다. 글자 크기 " + fontScale + "%.";
+        } else {
+          document.body.style.background =
+            "radial-gradient(circle at top left, rgba(233, 226, 217, 0.7), transparent 28%), linear-gradient(180deg, #f7f3ee 0%, #f3f0eb 100%)";
+          document.body.style.color = "";
+
+          cards.forEach(el => {
+            el.style.background = "";
+            el.style.color = "";
+            el.style.borderColor = "";
+            el.style.boxShadow = "";
+          });
+
+          muted.forEach(el => {
+            el.style.color = "";
+          });
+
+          status.textContent = "기본 보기 모드입니다.";
+        }
+      }
+
+      document.getElementById("font-up").addEventListener("click", function () {
+        fontScale = Math.min(fontScale + 10, 150);
+        applyView();
+      });
+
+      document.getElementById("font-down").addEventListener("click", function () {
+        fontScale = Math.max(fontScale - 10, 90);
+        applyView();
+      });
+
+      document.getElementById("toggle-contrast").addEventListener("click", function () {
+        highContrast = !highContrast;
+        applyView();
+      });
+
+      function stopSpeech() {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+
+      document.querySelectorAll(".tts-play").forEach(button => {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const target = document.getElementById(targetId);
+          if (!target) return;
+
+          if (!("speechSynthesis" in window)) {
+            alert("이 브라우저는 음성 읽기 기능을 지원하지 않습니다.");
+            return;
+          }
+
+          stopSpeech();
+          const utterance = new SpeechSynthesisUtterance(target.textContent.trim());
+          utterance.lang = "ko-KR";
+          utterance.rate = 0.95;
+          utterance.pitch = 1;
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+
+      document.querySelectorAll(".tts-stop").forEach(button => {
+        button.addEventListener("click", stopSpeech);
+      });
+
+      window.addEventListener("beforeunload", stopSpeech);
+      applyView();
+    })();
+  </script>
+</body>
+</html>
