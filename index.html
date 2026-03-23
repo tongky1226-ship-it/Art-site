@@ -1,256 +1,556 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박소담 작품 설명 아카이브</title>
+  <style>
+    :root {
+      --bg: #f6f4f1;
+      --surface: rgba(255, 255, 255, 0.84);
+      --surface-strong: #ffffff;
+      --text: #1d1b19;
+      --muted: #6d655e;
+      --line: #e5ddd4;
+      --accent: #6a7c8f;
+      --accent-deep: #506071;
+      --soft: #f0ebe4;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1120px;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(233, 226, 217, 0.7), transparent 28%),
+        linear-gradient(180deg, #f7f3ee 0%, #f3f0eb 100%);
+      line-height: 1.75;
+    }
 
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
-  
-  
-  
-  
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #0b57d0;
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
 
+    .skip-link {
+      position: absolute;
+      left: 14px;
+      top: -48px;
+      background: #fff;
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 2px solid #000;
+      z-index: 1000;
+    }
+    .skip-link:focus { top: 12px; }
 
-  본문으로 바로가기
-  
-    
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
 
-      
-시각 정보 접근에 어려움이 있는 분들을 위한 작품 설명 아카이브
+    header {
+      padding: 28px 0 14px;
+    }
 
-      
-박소담 작품 설명 아카이브
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(250,247,243,0.88));
+      border: 1px solid rgba(229,221,212,0.95);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 40px 32px 30px;
+      backdrop-filter: blur(12px);
+    }
 
-      
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -60px auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(140, 165, 191, 0.22), transparent 66%);
+      pointer-events: none;
+    }
 
-        이 사이트는 시각 정보 접근에 어려움이 있는 분들을 포함한 모든 관람자가 그림을 더 깊고 구체적으로 느낄 수 있도록, 작품의 구도·색·빛·질감·분위기를 차분한 문장과 음성으로 풀어낸 접근성 중심 아카이브입니다.
-      
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      font-size: 0.9rem;
+      color: var(--accent-deep);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
 
-      
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 3.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
 
-        작품 설명 바로 보기
-        사이트 이용 안내
-      
+    .lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.07rem;
+    }
 
-      
+    .hero-actions, .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
 
-        글자 크게
-        글자 작게
-        고대비 보기
-        기본 보기 모드입니다.
-      
+    .hero-actions { margin-top: 24px; }
+    .controls { margin-top: 20px; }
 
-    
+    .btn, .control-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(32, 24, 18, 0.04);
+    }
 
-  
-  
-    
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
 
-      
+    .status {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-        
+    main {
+      padding: 8px 0 42px;
+    }
 
-          
-            
-이 사이트의 방식
+    section {
+      margin-top: 26px;
+    }
 
-            
-각 작품은 짧은 한 줄 설명, 자세한 묘사, 작가 노트, 음성 재생 순서로 구성되어 있습니다.
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
 
-          
-          
-            
-이용 방법
+    .section-title {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
 
-            
-작품 제목 아래의 “자세한 설명 열기”를 누르면 긴 설명이 펼쳐집니다. 키보드 탭으로도 이동할 수 있습니다.
+    .section-intro {
+      margin: 0;
+      color: var(--muted);
+    }
 
-          
-          
-            
-관리 방법
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
 
-            
-이미지 파일과 설명문만 바꾸면 새 작품을 쉽게 추가할 수 있도록 단순한 구조로 만들었습니다.
+    .mini-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
 
-          
-        
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+    }
 
-      
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
 
+    .author-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: start;
+    }
 
-  <section id="author" aria-labelledby="author-title">
-    <div class="info-card" style="margin-bottom:20px; padding:20px;">
-      <h2 id="author-title">작가 소개</h2>
-      <p style="margin-bottom:10px;">시와 회화를 함께 작업하는 작가. 상실, 위로, 연결, 자연의 순환을 주제로 작업한다.</p>
-      <p style="margin-bottom:10px;"><strong>대표 저서</strong><br>시집 『문득』, 시집 『팔레트』, 시집 『손잡고 이탈』, 시화집 『나의 아침은 그의 푸른 나라』, 시화집 『기억』, 산문집 『소류지에 머무는 밤』</p>
-      <p><strong>전시 이력</strong></p>
-      <ul style="margin-top:8px; line-height:1.6;">
-        <li>2026 갤러리 구의스페이스 그룹전</li>
-        <li>2024 전주한뼘미술관 월간그리움 프로젝트전</li>
-        <li>2024 서초책있는거리 라이브드로잉퍼포먼스</li>
-        <li>2024 갤러리한옥&한국미술사연구소 개인전</li>
-        <li>2024 화성시나래울종합사회복지관 초대개인전</li>
-        <li>2023 평택시립장당도서관 초대개인전</li>
-        <li>2023 갤러리안단테 스타벅스 북한강R전시장 초대개인전</li>
-        <li>2023 연남 아트클로버 초대개인전</li>
-        <li>2023 수원 서른책방 초대개인전</li>
-        <li>2022 현대백화점 목동점 초대그룹전(기획총괄), 라이브드로잉퍼포먼스</li>
-        <li>2022 세종문화회관 오픈스테이지 뷰티인그레이스 그룹전</li>
-        <li>2022 메가박스 성수점 제8회 서울프라이드엑스포 그룹전</li>
-        <li>2022 부산아이테르 『나의 아침은 그의 푸른 나라』 개인전, 라이브드로잉퍼포먼스</li>
-        <li>2022 분당 카페트 초대개인전</li>
-        <li>2022 평택고덕 모니 초대개인전</li>
-        <li>2022 통미마을작은도서관 초대개인전</li>
-        <li>2022 을지로 알렉스룸 초대개인전</li>
-        <li>2022 쌍김기획 디자이너 온라인 그룹전</li>
-        <li>2021 명동 커뮤니티하우스마실 제6회 서울프라이드엑스포 그룹전</li>
-      </ul>
-      <p style="margin-top:12px;"><strong>수상 및 표창</strong></p>
-      <ul style="margin-top:8px; line-height:1.6;">
-        <li>2024 학교밖청소년지원센터 운영표창 우수멘토 부문 은상 여성가족부장관상</li>
-        <li>2023 오산시의회 의장 우수 유공자 표창</li>
-        <li>2023 오산시 평화의 소녀상 건립 7주년 문예대전 지도교사상</li>
-      </ul>
-      <p style="margin-top:12px; font-size:0.9rem; color:var(--muted);">※ goodgeori.jpg 파일을 이 HTML 파일과 같은 폴더에 넣으면 실제 작품 이미지가 표시됩니다.</p>
-    </div>
-  </section>
+    .author-main p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
 
-  <section id="gallery" aria-labelledby="gallery-title">
-    <div class="info-card" style="margin-bottom:20px;">
-      <h2 id="gallery-title">작품 목록</h2>
-      <p>아래에는 예시 작품 3점이 들어 있습니다. 나중에 실제 그림 제목, 연도, 설명문, 사진으로 바로 교체할 수 있습니다.</p>
-    </div>
+    .author-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(246,241,235,0.9));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
 
-    <div class="gallery">
-      <article class="art-card" aria-labelledby="art1-title">
-        <div class="art-image-wrap">
-          <img
-            src="goodgeori.jpg"
-            alt="큰 초록 나무 아래에서 여러 사람이 손을 잡고 원을 이루며 춤추고, 배경이 베이지색, 분홍색, 파란색으로 나뉜 회화"
-          />
+    .author-panel + .author-panel {
+      margin-top: 14px;
+    }
+
+    .author-panel h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .author-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .author-panel li + li {
+      margin-top: 6px;
+    }
+
+    .gallery-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .art-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .art-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+      align-items: stretch;
+    }
+
+    .art-visual {
+      background: linear-gradient(180deg, #f6f1e9, #ece6de);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .art-image {
+      width: 100%;
+      max-width: 540px;
+      max-height: 720px;
+      object-fit: contain;
+      border-radius: 22px;
+      box-shadow: 0 16px 34px rgba(23, 17, 12, 0.14);
+      background: #fff;
+    }
+
+    .art-content {
+      padding: 28px 28px 24px;
+    }
+
+    .art-badge {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent-deep);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .art-title {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .summary {
+      margin: 0 0 16px;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    details {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--accent-deep);
+    }
+
+    .desc-block {
+      margin-top: 14px;
+    }
+
+    .desc-block h4 {
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+    }
+
+    .desc-block p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .audio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    footer {
+      padding: 0 0 46px;
+    }
+
+    .footer-box {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 18px 20px;
+      color: var(--muted);
+    }
+
+    .footer-box p {
+      margin: 0;
+    }
+
+    .footer-box p + p {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .intro-grid,
+      .author-grid,
+      .art-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .art-visual {
+        padding-bottom: 0;
+      }
+
+      .art-image {
+        max-width: 640px;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(calc(100% - 20px), var(--max));
+      }
+
+      .hero,
+      .section-card,
+      .art-content,
+      .art-visual {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero {
+        padding-top: 28px;
+        padding-bottom: 24px;
+        border-radius: 26px;
+      }
+
+      .section-card,
+      .art-card {
+        border-radius: 24px;
+      }
+
+      .section-title {
+        font-size: 1.28rem;
+      }
+
+      .art-visual {
+        padding-top: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+  <header>
+    <div class="wrap">
+      <section class="hero" aria-label="소개 영역">
+        <p class="eyebrow">시각 정보 접근에 어려움이 있는 분들을 위한 작품 설명 아카이브</p>
+        <h1>박소담 작품 설명 아카이브</h1>
+        <p class="lead">
+          이 사이트는 시각 정보 접근에 어려움이 있는 분들을 포함한 모든 관람자가 그림을 더 깊고 구체적으로 느낄 수 있도록, 작품의 구도·색·빛·질감·분위기를 차분한 문장과 음성으로 풀어낸 접근성 중심 아카이브입니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#gallery">작품 보러 가기</a>
+          <a class="btn" href="#author">작가 소개 보기</a>
         </div>
-        <div class="art-content">
-          <span class="eyebrow">예시 작품 01</span>
-          <h3 class="art-title" id="art1-title">굿거리장단</h3>
-          <p class="meta">2026 · acrylic on canvas · 53 × 45.5 cm</p>
-          <p class="summary">거대한 나무 아래에서 사람들이 손을 맞잡고 원을 이루며 춤추는, 생명과 연결의 감각을 담은 그림입니다.</p>
-          <details>
-            <summary>자세한 설명 열기</summary>
-            <div class="desc-block">
-              <h4>짧은 설명</h4>
-              <p>큰 초록 나무 아래에서 사람들이 원을 이루며 춤추고, 배경이 밤과 낮으로 나뉜 색감의 회화입니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>자세한 묘사</h4>
-              <p>이 작품은 가로로 긴 화면이며, 왼쪽과 오른쪽이 서로 다른 시간과 분위기로 나뉘어 있습니다. 왼쪽에는 따뜻한 베이지색과 연한 갈색 배경 위로, 매우 큰 초록색 나무가 화면 대부분을 차지하고 있습니다. 나무는 아래가 굵고 위로 갈수록 둥글게 퍼지며, 머리카락처럼 가느다란 선들이 아래로 흘러내리는 형태입니다. 나무 주변에는 작은 흰 점들이 흩어져 있어 눈이나 빛의 입자처럼 보입니다. 화면 중앙을 지나 오른쪽으로 가면 배경이 분홍색으로 바뀌고, 더 오른쪽 끝은 깊은 파란색 밤하늘로 이어집니다. 오른쪽 아래에는 여러 명의 사람들이 손을 잡고 원을 이루며 춤을 추고 있습니다. 인물들은 길고 흐르는 듯한 분홍빛 옷을 입고 있으며 서로 연결되어 있습니다. 오른쪽 위에는 둥근 빛이 있어 달처럼 보입니다. 전체적으로 이 그림은 낮과 밤, 감정과 시간, 그리고 공동체의 연결을 함께 보여줍니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>작가 노트</h4>
-              <p>이 작품은 강강술래의 원형 움직임을 통해 ‘함께 있음’과 ‘이어짐’을 이야기합니다. 서로 다른 시간과 감정이 하나의 흐름으로 이어지는 순간을 표현했습니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>오디오 설명</h4>
-              <div class="audio-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-                <button type="button" class="control-btn tts-play" data-target="tts-art1">설명 듣기</button>
-                <button type="button" class="control-btn tts-stop">음성 정지</button>
-              </div>
-              <p id="tts-art1" class="meta" style="margin-top:12px; color:var(--text);">
-                이 그림은 가로로 긴 화면입니다. 왼쪽에는 매우 큰 초록색 나무가 있고, 아래가 굵고 위로 둥글게 퍼져 있습니다. 나무는 머리카락처럼 가는 선들이 아래로 흘러내리는 형태입니다. 배경은 왼쪽은 따뜻한 베이지색, 가운데는 분홍색, 오른쪽은 짙은 파란색으로 나뉘어 있습니다. 화면 전체에는 작은 흰 점들이 흩어져 있어 눈이나 빛처럼 보입니다. 오른쪽 아래에는 여러 사람이 손을 잡고 원을 이루며 춤을 추고 있습니다. 인물들은 분홍빛 옷을 입고 있으며 서로 연결되어 있습니다. 오른쪽 위에는 둥근 빛이 있어 달처럼 보입니다. 전체적으로 이 그림은 함께 움직이고 연결되는 감각을 보여줍니다.
+        <div class="controls" aria-label="보기 설정">
+          <button type="button" class="control-btn" id="font-up">글자 크게</button>
+          <button type="button" class="control-btn" id="font-down">글자 작게</button>
+          <button type="button" class="control-btn" id="toggle-contrast">고대비 보기</button>
+          <span class="status" id="view-status" aria-live="polite">기본 보기 모드입니다.</span>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="wrap">
+      <section aria-labelledby="guide-title">
+        <div class="section-card">
+          <h2 class="section-title" id="guide-title">사이트 안내</h2>
+          <p class="section-intro">
+            작품을 글과 음성으로 천천히 따라갈 수 있도록 구조를 단순하게 정리했습니다. 처음 방문하는 분도 편안하게 탐색할 수 있도록 정보 흐름을 명확하게 구성했습니다.
+          </p>
+          <div class="intro-grid">
+            <article class="mini-card">
+              <h3>이 사이트의 방식</h3>
+              <p>각 작품은 한 줄 설명, 자세한 묘사, 작가 노트, 음성 재생 순서로 이어집니다.</p>
+            </article>
+            <article class="mini-card">
+              <h3>이용 방법</h3>
+              <p>작품 아래의 ‘자세한 설명 열기’를 누르면 긴 설명이 펼쳐집니다. 키보드만으로도 이동할 수 있습니다.</p>
+            </article>
+            <article class="mini-card">
+              <h3>운영 방법</h3>
+              <p>이미지 파일과 설명문만 바꾸면 새 작품을 같은 형식으로 차분하게 추가할 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="author" aria-labelledby="author-title">
+        <div class="section-card">
+          <div class="author-grid">
+            <div class="author-main">
+              <h2 class="section-title" id="author-title">작가 소개</h2>
+              <p>시와 회화를 함께 작업하는 작가. 상실, 위로, 연결, 자연의 순환을 주제로 작업합니다.</p>
+              <p><strong>대표 저서</strong><br>
+                시집 『문득』, 시집 『팔레트』, 시집 『손잡고 이탈』, 시화집 『나의 아침은 그의 푸른 나라』, 시화집 『기억』, 산문집 『소류지에 머무는 밤』
               </p>
-              <p class="meta">브라우저의 음성 읽기 기능으로 바로 들을 수 있게 했습니다. 나중에 직접 녹음한 MP3 파일로도 바꿀 수 있습니다.</p>
             </div>
-          </details>
+
+            <div>
+              <div class="author-panel">
+                <h3>전시 이력</h3>
+                <ul>
+                  <li>2026 갤러리 구의스페이스 그룹전</li>
+                  <li>2024 전주한뼘미술관 월간그리움 프로젝트전</li>
+                  <li>2024 서초책있는거리 라이브드로잉퍼포먼스</li>
+                  <li>2024 갤러리한옥&amp;한국미술사연구소 개인전</li>
+                  <li>2024 화성시나래울종합사회복지관 초대개인전</li>
+                  <li>2023 평택시립장당도서관 초대개인전</li>
+                  <li>2023 갤러리안단테 스타벅스 북한강R전시장 초대개인전</li>
+                  <li>2023 연남 아트클로버 초대개인전</li>
+                  <li>2023 수원 서른책방 초대개인전</li>
+                  <li>2022 현대백화점 목동점 초대그룹전(기획총괄), 라이브드로잉퍼포먼스</li>
+                  <li>2022 세종문화회관 오픈스테이지 뷰티인그레이스 그룹전</li>
+                  <li>2022 메가박스 성수점 제8회 서울프라이드엑스포 그룹전</li>
+                  <li>2022 부산아이테르 『나의 아침은 그의 푸른 나라』 개인전, 라이브드로잉퍼포먼스</li>
+                  <li>2022 분당 카페트 초대개인전</li>
+                  <li>2022 평택고덕 모니 초대개인전</li>
+                  <li>2022 통미마을작은도서관 초대개인전</li>
+                  <li>2022 을지로 알렉스룸 초대개인전</li>
+                  <li>2022 쌍김기획 디자이너 온라인 그룹전</li>
+                  <li>2021 명동 커뮤니티하우스마실 제6회 서울프라이드엑스포 그룹전</li>
+                </ul>
+              </div>
+
+              <div class="author-panel">
+                <h3>수상 및 표창</h3>
+                <ul>
+                  <li>2024 학교밖청소년지원센터 운영표창 우수멘토 부문 은상 여성가족부장관상</li>
+                  <li>2023 오산시의회 의장 우수 유공자 표창</li>
+                  <li>2023 오산시 평화의 소녀상 건립 7주년 문예대전 지도교사상</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="art-card" aria-labelledby="art2-title">
-        <div class="art-image-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"
-            alt="은은한 빛과 안개가 깔린 들판을 닮은 분위기의 예시 이미지"
-          />
-        </div>
-        <div class="art-content">
-          <span class="eyebrow">예시 작품 02</span>
-          <h3 class="art-title" id="art2-title">작품 제목 2</h3>
-          <p class="meta">2026 · mixed media · 72.7 × 60.6 cm</p>
-          <p class="summary">안개처럼 번지는 색의 층을 통해 기억과 침묵의 시간을 표현한 그림입니다.</p>
-          <details>
-            <summary>자세한 설명 열기</summary>
-            <div class="desc-block">
-              <h4>짧은 설명</h4>
-              <p>회백색과 연한 청색, 탁한 갈색이 겹쳐져 안개 낀 풍경처럼 느껴지는 작품입니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>자세한 묘사</h4>
-              <p>가로형 화면입니다. 화면 전체에 회백색, 옅은 청색, 탁한 베이지색이 넓게 섞여 있습니다. 위아래 경계는 분명하지 않고, 색과 색 사이가 안개처럼 번지며 이어집니다. 가운데 부근에는 조금 더 밝은 부분이 있어 멀리서 희미한 빛이 비치는 느낌을 줍니다. 뚜렷한 인물이나 사물은 없지만, 수평으로 눕는 색의 흐름 때문에 들판이나 호수 가장자리 같은 풍경이 떠오를 수 있습니다. 표면은 한 번에 두껍게 올린 질감보다, 닦아내고 다시 입힌 흔적이 남은 듯 얇고 겹겹의 층을 상상하게 합니다. 전체 인상은 차분하고 느리며, 오래된 기억을 조용히 더듬는 감각에 가깝습니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>작가 노트</h4>
-              <p>선명하지 않아서 더 오래 남는 감정, 말로 다 정리되지 않는 기억의 표면을 다루고자 했습니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>오디오 설명</h4>
-              <audio controls aria-label="작품 제목 2 오디오 설명">
-                <source src="" type="audio/mpeg" />
-              </audio>
-              <p class="meta">직접 읽은 음성 설명을 넣으면 훨씬 실용적입니다.</p>
-            </div>
-          </details>
-        </div>
-      </article>
+      <section id="gallery" aria-labelledby="gallery-title">
+        <div class="gallery-stack">
+          <div class="section-card">
+            <h2 class="section-title" id="gallery-title">작품</h2>
+            <p class="section-intro">작품 한 점을 천천히 읽고 바라볼 수 있도록 이미지와 설명을 한 화면 안에 담았습니다.</p>
+          </div>
 
-      <article class="art-card" aria-labelledby="art3-title">
-        <div class="art-image-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?auto=format&fit=crop&w=1200&q=80"
-            alt="밤하늘과 작은 빛의 대비가 느껴지는 예시 이미지"
-          />
-        </div>
-        <div class="art-content">
-          <span class="eyebrow">예시 작품 03</span>
-          <h3 class="art-title" id="art3-title">작품 제목 3</h3>
-          <p class="meta">2026 · oil on canvas · 65.1 × 53 cm</p>
-          <p class="summary">깊은 어둠과 미세한 빛의 대비를 통해 기도와 기다림의 감각을 전하는 그림입니다.</p>
-          <details>
-            <summary>자세한 설명 열기</summary>
-            <div class="desc-block">
-              <h4>짧은 설명</h4>
-              <p>짙은 밤색과 남색이 화면을 감싸고, 한쪽에서만 약한 빛이 스며드는 회화입니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>자세한 묘사</h4>
-              <p>세로형 화면입니다. 전체적으로 매우 어두운 남색과 갈흑색이 중심을 이룹니다. 왼쪽 위는 거의 검정처럼 가라앉아 있고, 오른쪽 아래로 갈수록 약간 더 따뜻한 갈색 기운이 섞입니다. 화면 중앙에는 형태가 분명하지 않은 부드러운 덩어리가 있으며, 그 가장자리에만 미세한 빛이 닿아 윤곽을 겨우 짐작하게 합니다. 밝고 어두운 부분의 대비가 강하지만 번짐이 심하지 않아, 정적이 두텁게 눌린 느낌을 줍니다. 붓자국은 길게 미끄러지기보다 짧게 쌓여 있어, 어둠이 천천히 켜켜이 내려앉은 표면을 상상하게 합니다. 보는 사람에 따라 기도하는 사람의 실루엣, 혹은 어둠 속에서 기다리는 존재를 떠올릴 수 있습니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>작가 노트</h4>
-              <p>바로 드러나지 않는 감정도 충분히 존재한다는 사실, 그리고 침묵 자체가 하나의 언어가 될 수 있음을 담고 싶었습니다.</p>
-            </div>
-            <div class="desc-block">
-              <h4>오디오 설명</h4>
-              <audio controls aria-label="작품 제목 3 오디오 설명">
-                <source src="" type="audio/mpeg" />
-              </audio>
-              <p class="meta">작가 본인의 목소리로 녹음하면 전달력이 더 좋아집니다.</p>
-            </div>
-          </details>
-        </div>
-      </article>
-    </div>
-  </section>
-</div>
+          <article class="art-card" aria-labelledby="art1-title">
+            <div class="art-layout">
+              <div class="art-visual">
+                <img
+                  src="goodgeori.jpg"
+                  alt="큰 초록 나무 아래에서 여러 사람이 손을 잡고 원을 이루며 춤추고, 배경이 베이지색, 분홍색, 파란색으로 나뉜 회화"
+                  class="art-image"
+                />
+              </div>
 
+              <div class="art-content">
+                <span class="art-badge">작품 01</span>
+                <h3 class="art-title" id="art1-title">굿거리장단</h3>
+                <p class="meta">2026 · acrylic on canvas · 53 × 45.5 cm</p>
+                <p class="summary">
+                  거대한 나무 아래에서 사람들이 손을 맞잡고 원을 이루며 춤추는, 생명과 연결의 감각을 담은 그림입니다.
+                </p>
 
-  
-  
-    
+                <details>
+                  <summary>자세한 설명 열기</summary>
 
-      
-사용 방법: 이 파일은 하나의 HTML 파일만으로 작동합니다. 제목, 설명, 이미지 주소만 바꾸면 바로 운영할 수 있습니다.
+                  <div class="desc-block">
+                    <h4>짧은 설명</h4>
+                    <p>큰 초록 나무 아래에서 사람들이 원을 이루며 춤추고, 배경이 밤과 낮으로 나뉜 색감의 회화입니다.</p>
+                  </div>
 
-      
-추천 다음 단계: 실제 작품 사진으로 교체하고, 각 작품 설명을 직접 녹음한 MP3 파일로 연결하면 훨씬 완성도가 높아집니다.
-
-    
-
-  
-  
-
-
+                  <div class="desc-block">
+                    <h4>자세한 묘사</h4>
+                    <p>
+                      이 작품은 가로로 긴 화면이며, 왼쪽과 오른쪽이 서로 다른 시간과 분위기로 나뉘어 있습니다. 왼쪽에는 따뜻한 베이지색과 연한 갈색 배경 위로, 매우 큰 초록색 나무가 화면 대부분을 차지하고 있습니다. 나무는 아래가 굵고 위로 갈수록 둥글게 퍼지며, 머리카락처럼 가느다란 선들이 아래로 흘러내리는 형태입니다. 나무 주변에는 작은 흰 점들이 흩어져 있어 눈이나 빛의 입자처럼 보입니다.
